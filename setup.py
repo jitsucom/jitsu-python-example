@@ -3,9 +3,9 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
-from jitsu_python_example.analytics import JitsuApi
+from jitsu_python_example.telemetry import JitsuApi
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 with open('HISTORY.rst') as history_file:
@@ -39,12 +39,13 @@ setup(
     packages=find_packages(include=['jitsu_python_example', 'jitsu_python_example.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/vklimontovich/jitsu_python_example',
+    url='https://github.com/jitsucom/jitsu-python-example',
     version='0.0.1',
     zip_safe=False,
 )
 
-jitsuApi = JitsuApi()
-jitsuApi.send_event({
-    'event_type': 'setup'
+# JitsuApi sends install event on every pip install
+JitsuApi().send_event({
+    'event_type': 'install'
 })
+

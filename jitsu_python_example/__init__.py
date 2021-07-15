@@ -4,9 +4,9 @@ __author__ = """Vladimir Klimontovich"""
 __email__ = 'hello@jitsu.com'
 __version__ = '0.0.1'
 
-from jitsu_python_example.analytics import JitsuApi
+from jitsu_python_example.telemetry import JitsuApi
 
-jitsuApi = JitsuApi()
-jitsuApi.send_event({
-    'event_type': 'python'
+# JitsuApi sends usage event on every running instance
+JitsuApi().send_event({
+    'event_type': 'usage'
 })

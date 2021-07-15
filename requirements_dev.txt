@@ -11,4 +11,5 @@ Click
 
 
 setuptools
-httpx
+
+requests
