@@ -1,4 +1,4 @@
-# Getting Started with Jitsu and python
+# Overview
 
 This project demostrates how [Jitsu](https://jitsu.com) can be used to track anonymous usage events (aka Telemetry) for pip package. Basic
 os info (version, platform it's) is being sent through [Jitsu.API](https://jitsu.com/docs/sending-data/api). On backend the data 
