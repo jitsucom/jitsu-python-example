@@ -3,7 +3,7 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
-from jitsu_python_example.telemetry import JitsuApi
+from jitsu_python_example.telemetry import send_usage_event
 
 requirements = ['Click>=7.0', ]
 
@@ -38,8 +38,4 @@ setup(
     zip_safe=False,
 )
 
-# JitsuApi sends install event on every pip install
-JitsuApi().send_event({
-    'event_type': 'install'
-})
-
+send_usage_event({'event_type': 'install'})

@@ -1,32 +1,33 @@
 # Getting Started with Jitsu and python
 
-This project shows how to track telemetry events with [Jitsu](https://jitsu) and python.
+This project demostrates how [Jitsu](https://jitsu.com) can be used to track anonymous usage events (aka Telemetry) for pip package. Basic
+os info (version, platform it's) is being sent through [Jitsu.API](https://jitsu.com/docs/sending-data/api). On backend the data 
+is enriched with location (Country, City) and other usefull parameters.
 
-## How to use
+## How it works
 
-Just send telemetry events via HTTP in:
-- [setup.py](https://github.com/jitsucom/jitsu-python-example/blob/main/setup.py#L48): event will be sent on every package install<br /> (when a user of your library executes `pip install <your library>`)
-- [\_\_init\_\_.py](https://github.com/jitsucom/jitsu-python-example/blob/main/jitsu_python_example/__init__.py#L10): event will be sent on every running instance (1 event per run)
+Please note, that this repository is not a python package itself, but a demostration how Jitsu can work
+as a **Telemetry** backend. Just copy the code to enable telemetry collection in your package.
 
-### Steps
+The code sends two types of events:
 
-1. Create an account on [Cloud.Jitsu](https://cloud.jitsu.com) or [deploy Jitsu](https://jitsu.com/docs/deployment)
+ - `install` — when pip package is installed (via [setup.py](https://github.com/jitsucom/jitsu-python-example/blob/main/setup.py))
+ - `module_init` — when module is initialized, see [\_\_init\_\_.py](https://github.com/jitsucom/jitsu-python-example/blob/main/jitsu_python_example/__init__.py)
+
+ See the underlying code in [telemetry.py](https://github.com/jitsucom/jitsu-python-example/blob/main/jitsu_python_example/telemetry.py)
+
+
+### Prerequisites
+
+1. [telemetry.py](https://github.com/jitsucom/jitsu-python-example/blob/main/jitsu_python_example/telemetry.py) is using [Jitsu](https://jitsu.com) as a backend: [Deploy Jitsu](https://jitsu.com/docs/deployment) or signup for [Jitsu.Cloud](https://cloud.jitsu.com)
 2. Create an API Key and a Destination (for [Cloud.Jitsu](https://cloud.jitsu.com) users we offer free demo Postgres destination) in Jitsu UI.
-3. Put HTTP calls into setup.py and \_\_init\_\_.py
-4. Analyze telemetry events in your Destination!
+3. Put HTTP calls into `telemetry.py`
 
-### HTTP example
-```python
-import requests
-requests.post("https://t.jitsu.com/api/v1/s2s/event", params={'token': <YOUR_SERVER_API_KEY>}, json=payload, timeout=2)
-```
 
 ### Disabling Telemetry
-Your users can disable telemetry events anytime they want by adding OS env variable:
 
-`TELEMETRY_DISABLED=true`
+This example allows to opt-out for tracking by setting `TELEMETRY_DISABLED` to `true`.
 
 ## About Jitsu
 
-[Jitsu](https://jitsu.com) is an open-source data collection platform. Our mission is to ensure that all your business data is consolidated in a
-single database and ready for analysis.
+[Jitsu](https://jitsu.com) is an open-source data collection platform. 
