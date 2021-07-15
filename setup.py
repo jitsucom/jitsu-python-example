@@ -5,12 +5,6 @@
 from setuptools import setup, find_packages
 from jitsu_python_example.telemetry import JitsuApi
 
-with open('README.md') as readme_file:
-    readme = readme_file.read()
-
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 requirements = ['Click>=7.0', ]
 
 test_requirements = [ ]
